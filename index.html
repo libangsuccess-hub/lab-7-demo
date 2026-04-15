@@ -1,32 +1,96 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Events</title>
+
 <style>
     body{
         background-color: rgb(48, 47, 47);
+        color: white;
+        text-align: center;
+        margin-top: 50px;
     }
-    
+
+    input, button {
+        padding: 10px;
+        margin: 10px;
+    }
 </style>
 </head>
+
 <body>
+
+    <!-- Button -->
     <button id="btn">Click Me</button>
-    <input  mouseover="change_background" type="text" id="input" placeholder="Type here">
-    <script>
-        document.getElementById("btn").addEventListener("click",  function(){
-            alert("Button Clicked!");
-        });
-        document.getElementById("input").addEventListener("keyup", function(event){
-            console.log("key pressed:" + event.key);
-        });
-        // add a mouseover event to change an element's background
-        document.getElementById("input").addEventListener("mouseover", function(event){
-            document.getElementById("input").style="color: green";
-        });
-       
-            
-    </script>
+
+    <!-- Input -->
+    <input type="text" id="input" placeholder="Type here">
+
+    <!-- Counter -->
+    <h2>Counter: <span id="count">0</span></h2>
+    <button id="increment">Increase</button>
+
+    <!-- Form -->
+    <form id="form">
+        <input type="text" id="email" placeholder="Enter email">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Timer Text -->
+    <p id="text">Wait for it...</p>
+
+    <!-- Link -->
+    <a href="https://google.com" id="link">Go to Google</a>
+
+<script>
+
+    // 1. Button Click
+    document.getElementById("btn").addEventListener("click", function(){
+        alert("Button Clicked!");
+    });
+
+    // 2. Key Press Event
+    document.getElementById("input").addEventListener("keyup", function(event){
+        console.log("Key pressed: " + event.key);
+    });
+
+    // 3. Mouseover Event (Change Background)
+    document.getElementById("input").addEventListener("mouseover", function(){
+        this.style.backgroundColor = "lightgreen";
+    });
+
+    // 4. Counter
+    let count = 0;
+    document.getElementById("increment").addEventListener("click", function(){
+        count++;
+        document.getElementById("count").textContent = count;
+    });
+
+    // 5. Form Validation
+    document.getElementById("form").addEventListener("submit", function(event){
+        let email = document.getElementById("email").value;
+
+        if (!email.includes("@")) {
+            alert("Invalid email!");
+            event.preventDefault(); // stop form submission
+        }
+    });
+
+    // 6. Timer (setTimeout)
+    setTimeout(function(){
+        document.getElementById("text").textContent = "Text changed after 5 seconds!";
+    }, 5000);
+
+    // 7. Prevent Default (Link)
+    document.getElementById("link").addEventListener("click", function(event){
+        event.preventDefault();
+        alert("Navigation prevented!");
+    });
+
+</script>
+
 </body>
 </html>
